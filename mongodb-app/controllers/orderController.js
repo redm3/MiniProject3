@@ -37,6 +37,7 @@ const createOrder = (req, res) => {
             res.send({ result: 500, error: err.message })
         })
 }
+
 // Delete an order by ID
 const deleteOrder = (req, res) => {
     Models.User.findByIdAndRemove(req.params.id, req.body, {
