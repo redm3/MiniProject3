@@ -25,7 +25,7 @@ router.post('/delete/:id', (req, res) => {
 module.exports = router;
 
 
-
+//http://127.0.0.1:8000/api/order/create
 //https://app.diagrams.net/#G1cxeDopfEtp6SM68lZ8GBB-2jd17jDzdJ
 /* 
 {

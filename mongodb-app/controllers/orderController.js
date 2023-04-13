@@ -1,10 +1,10 @@
 const Models = require("../models");
 
 // Get all orders
-const getAllOrders = (req, res) => {
+const getAllOrders = (res) => {
     Models.Order.find({})
-        .populate("userId", "name email") // populate user details
-        .populate("products.productId", "name price") // populate product details
+        .populate("userId") // populate user details
+        .populate("products.productId") // populate product details
         .then((data) => {
             res.send({ result: 200, data: data });
         })
@@ -29,6 +29,7 @@ const getOrdersByUserID = (req, res) => {
 // Create a new order
 const createOrder = (req, res) => {
     const data = req.body;
+    console.log(data)
     //creates a new order using JSON data POSTed in request body
     new Models.Order(data).save()
         .then(data => res.send({ result: 200, data: data }))

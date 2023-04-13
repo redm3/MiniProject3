@@ -6,7 +6,7 @@ const User = require('./user')
 const orderSchema = new schema({
     userId:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'user',
         required:true
     },
     date:{
@@ -17,7 +17,7 @@ const orderSchema = new schema({
         {
             productId:{
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Product',
+                ref: 'product',
                 required:true
             },
             quantity:{

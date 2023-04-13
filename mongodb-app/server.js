@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 let dbConnect = require("./dbConnect");
+
+const Controllers = require("./controllers"); //index.js
 app.use(express.json());
 
 let userRoutes = require("./routes/userRoutes")
@@ -15,6 +17,8 @@ app.use('/api/order', orderRoutes)
 
 
 
+
+
 // parse requests of content-type -application/json
 
 app.get("/", (req, res) => {
@@ -25,4 +29,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
 console.log(`Server is running on port ${PORT}.`);
+Controllers.productController.getProducts();
 });

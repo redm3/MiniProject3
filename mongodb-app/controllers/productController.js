@@ -1,7 +1,8 @@
 const axios = require('axios');
 let Models = require("../models"); //matches index.js
 
-const getProducts = (res) => {
+const getProducts = () => {
+    Models.Product.deleteMany({}).then(()=> {
     axios.get('https://fakestoreapi.com/products')
         .then(response => {
             // save the retrieved Product data to your database
@@ -9,32 +10,37 @@ const getProducts = (res) => {
                 .then(() => {
                     // retrieve the saved Product data from your database
                     Models.Product.find({})
-                        .then(data => res.send({ result: 200, data: data }))
+                        .then(data => console.log({ result: 200, data: data }))
                         .catch(err => {
                             console.log(err);
-                            res.send({ result: 500, error: err.message })
+                            
                         });
                 })
                 .catch(err => {
                     console.log(err);
-                    res.send({ result: 500, error: err.message })
                 });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+};
+
+const getProduct = (req, res) => {
+    /* axios.get('https://fakestoreapi.com/products/' + req.params.id) */
+    Models.User.findOne({ id: req.params.id })
+        .then(data => {
+            if (!data) {
+                res.send({ result: 404, error: "User not found" })
+            } else {
+                res.send({ result: 200, data: data })
+            }
         })
         .catch(err => {
             console.log(err);
             res.send({ result: 500, error: err.message })
         });
 };
-
-const getProduct = (req, res) => {
-    /* axios.get('https://fakestoreapi.com/products/' + req.params.id) */
-    Models.User.findOne({ id: req.params.id })
-    .then(function (response) {
-        res.send({ result: 200, data: response.data })
-    }).catch(err => {
-        res.send({ result: 500, data: err.message })
-    })
-}
 
 
 const createProduct = (data, res) => {
