@@ -29,11 +29,11 @@ router.delete('/delete/:id', (req, res) => {
 //GET
 
 // http://127.0.0.1:8000/api/product  retrive all
-// http://127.0.0.1:8000/api/product/1 retrive 1 product id
+// http://127.0.0.1:8000/api/products/1 retrive 1 product id
 
 //post
 
-// http://127.0.0.1:8000/api/product/create
+// http://127.0.0.1:8000/api/products/create
 /* 
 {
     "id": 100,
@@ -49,10 +49,22 @@ router.delete('/delete/:id', (req, res) => {
 //PUT
 //http://127.0.0.1:8000/api/product/update/100
 
+/* 
+{
+    "id": 100,
+    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "price": 120,
+    "description": "Your perfect pack for everyday use and walks in the forest. Stash your...",
+    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    "category": "men's clothing",
+    "__v": 0
+} 
+*/
+
 
 
 
 //delete
-//http://127.0.0.1:8000/api/product/delete/100
+//http://127.0.0.1:8000/api/products/delete/100
 
 //WORKING AFTER TESTING

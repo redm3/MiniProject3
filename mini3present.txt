@@ -1,0 +1,34 @@
+What was your requirements gathering and design process? Was it useful/successful?
+Give a high level overview of your application and its features
+Where does the data come from (external API)?
+How is this data inserted into your database?
+How is the data structured (into tables or collections)?
+How is the application code structured (MVC model)?
+Does your application cover all 4 CRUD operations? How?
+How might using a database instead of an external API directly benefit an application?
+How might you extend the features of your application in future?
+
+
+
+Start Up Procedure
+
+GET
+http://127.0.0.1:8000/api/users/ retrive all Users which is automated on npm start
+GET
+http://127.0.0.1:8000/api/product  retrive all products which is automated on npm start
+Orders are to be made only after NPM start as it is required to have a user and product ID matching databse.
+
+The data comes from fakestoreAPI which is a free API
+
+The data is inserted into the database using AXIOS and is stored in MONGODB which is defined as userschematics in models.
+
+The schema is stored in collection and inside that is documents.
+
+The application has Models, controllers and routes theres no view as the monggo compass is the front end for the database.
+
+The database covers all 4 CRUD operations. The users and products are read into the database from axios and stored and created automatically. You can individually read each ID from the database. you can then update users such as email, and update products such as the price. You can delete any user prodcut or order.
+
+Using a database instead of an API gives more security and more flexibility when it comes to storing data. It gives improved performance for loading, can be stored offline,and better data secuirty 
+
+I can extend the application for wishlists, payment information, order status, revies, categories, discounts and coupons. 
+
