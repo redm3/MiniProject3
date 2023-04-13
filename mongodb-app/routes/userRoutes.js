@@ -14,19 +14,30 @@ router.post('/create', (req, res) => {
     Controllers.userController.createUser(req.body, res)
 })
 
-router.put('/:id', (req, res) => {
+router.put('/update/:id', (req, res) => {
     Controllers.userController.updateUser(req, res)
 })
-router.delete('/:id', (req, res) => {
+
+router.delete('/delete/:id', (req, res) => {
+    console.log(req.params.id)
     Controllers.userController.deleteUser(req, res)
 })
-  
-  module.exports = router;
 
+module.exports = router;
 
+//TEST
+
+//GET
+//http://127.0.0.1:8000/api/users/ 
+//retrive list of all users
+//http://127.0.0.1:8000/api/users/1
+//get user 1 info
+
+//POST
 // http://127.0.0.1:8000/api/users/create
-/*   {
-    "id":"1",
+/*   
+{
+    "id":"11",
     "email":"mwz@gmail.com",
     "username":"macmwz",
     "password":"1234",
@@ -45,4 +56,35 @@ router.delete('/:id', (req, res) => {
         }
     },
     "phone":"09 123 4567"
-} */
+} 
+*/
+//PUT
+//http://127.0.0.1:8000/api/users/update/53
+/* 
+{
+    "id":"53",
+    "email":"CHANGED@gmail.com",
+    "username":"macmwz",
+    "password":"1234567",
+    "name":{
+        "firstname":"Marco",
+        "lastname":"Wells"
+        },
+    "address":{
+    "city":"Auckland",
+    "street":"street ave",
+    "number": "123",
+    "zipcode":"1234",
+    "geolocation":{
+        "lat":"12.23.43",
+        "long":"1.2.3.4"
+        }
+    },
+    "phone":"09 123 4567"
+} 
+
+   */
+
+//delete 
+
+// http://127.0.0.1:8000/api/users/delete/100

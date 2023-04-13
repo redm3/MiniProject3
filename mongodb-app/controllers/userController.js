@@ -1,5 +1,6 @@
 const axios = require('axios');
 let Models = require("../models"); //matches index.js
+const mongoose = require('mongoose')
 
 const getUsers = (res) => {
     axios.get('https://fakestoreapi.com/users')
@@ -27,13 +28,20 @@ const getUsers = (res) => {
 };
 
 const getUserById = (req, res) => {
-    axios.get('https://fakestoreapi.com/users/'+req.params.id)
-    .then(function (response) {
-        res.send({ result: 200, data: response.data })
-    }).catch(err => {
-        res.send({ result: 500, data: err.message })
-    })
-}
+    /* axios.get('https://fakestoreapi.com/users/'+req.params.id) */
+    Models.User.findOne({ id: req.params.id })
+        .then(data => {
+            if (!data) {
+                res.send({ result: 404, error: "User not found" })
+            } else {
+                res.send({ result: 200, data: data })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.send({ result: 500, error: err.message })
+        });
+};
 
 const createUser = (data, res) => {
     //creates a new user using JSON data POSTed in request body
@@ -49,20 +57,19 @@ const createUser = (data, res) => {
 const updateUser = (req, res) => {
     //updates the user matching the ID from the param using JSON data POSTed in request body
     console.log(req.body)
-    Models.User.findByIdAndUpdate(req.params.id, req.body, {
-        useFindAndModify: false
-    })
+    /* Models.User.findOne({ id: req.params.id }) */
+    Models.User.findOneAndUpdate({ id: req.params.id }, req.body )
         .then(data => res.send({ result: 200, data: data }))
         .catch(err => {
             console.log(err);
             res.send({ result: 500, error: err.message })
         })
 }
+
 const deleteUser = (req, res) => {
     //deletes the user matching the ID from the param
-    Models.User.findByIdAndRemove(req.params.id, req.body, {
-        useFindAndModify: false
-    })
+    console.log()
+    Models.User.findOneAndDelete({ id: req.params.id }, req.body )
         .then(data => res.send({ result: 200, data: data }))
         .catch(err => {
             console.log(err);

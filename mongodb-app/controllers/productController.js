@@ -27,7 +27,8 @@ const getProducts = (res) => {
 };
 
 const getProduct = (req, res) => {
-    axios.get('https://fakestoreapi.com/products/' + req.params.id)
+    /* axios.get('https://fakestoreapi.com/products/' + req.params.id) */
+    Models.User.findOne({ id: req.params.id })
     .then(function (response) {
         res.send({ result: 200, data: response.data })
     }).catch(err => {
@@ -48,11 +49,10 @@ const createProduct = (data, res) => {
 }
 
 const updateProduct = (req, res) => {
-    //updates the Product matching the ID from the param using JSON data POSTed in request body
+    //updates the user matching the ID from the param using JSON data POSTed in request body
     console.log(req.body)
-    Models.Product.findByIdAndUpdate(req.params.id, req.body, {
-        useFindAndModify: false
-    })
+    /* Models.User.findOne({ id: req.params.id }) */
+    Models.User.findOneAndUpdate({ id: req.params.id }, req.body )
         .then(data => res.send({ result: 200, data: data }))
         .catch(err => {
             console.log(err);

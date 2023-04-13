@@ -16,7 +16,8 @@ router.post('/create', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    Controllers.productController.updateProduct(req, res)
+    const userId = mongoose.Types.ObjectId(req.params.id);
+    Controllers.userController.updateUser(userId, req, res);
 })
 router.delete('/:id', (req, res) => {
     Controllers.productController.deleteProduct(req, res)
