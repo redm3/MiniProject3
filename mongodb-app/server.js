@@ -10,14 +10,10 @@ let userRoutes = require("./routes/userRoutes")
 app.use('/api/users', userRoutes)
 
 let productRoutes = require("./routes/productRoutes")
-app.use('/api/product', productRoutes)
+app.use('/api/products', productRoutes)
 
 let orderRoutes = require("./routes/orderRoutes")
-app.use('/api/order', orderRoutes)
-
-
-
-
+app.use('/api/orders', orderRoutes)
 
 // parse requests of content-type -application/json
 
@@ -30,4 +26,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
 console.log(`Server is running on port ${PORT}.`);
 Controllers.productController.getProducts();
+Controllers.userController.getUsers();
 });

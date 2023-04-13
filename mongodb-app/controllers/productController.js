@@ -13,7 +13,6 @@ const getProducts = () => {
                         .then(data => console.log({ result: 200, data: data }))
                         .catch(err => {
                             console.log(err);
-                            
                         });
                 })
                 .catch(err => {
@@ -28,7 +27,7 @@ const getProducts = () => {
 
 const getProduct = (req, res) => {
     /* axios.get('https://fakestoreapi.com/products/' + req.params.id) */
-    Models.User.findOne({ id: req.params.id })
+    Models.Product.findOne({ id: req.params.id })
         .then(data => {
             if (!data) {
                 res.send({ result: 404, error: "User not found" })
@@ -58,18 +57,18 @@ const updateProduct = (req, res) => {
     //updates the user matching the ID from the param using JSON data POSTed in request body
     console.log(req.body)
     /* Models.User.findOne({ id: req.params.id }) */
-    Models.User.findOneAndUpdate({ id: req.params.id }, req.body )
+    Models.Product.findOneAndUpdate({ id: req.params.id }, req.body )
         .then(data => res.send({ result: 200, data: data }))
         .catch(err => {
             console.log(err);
             res.send({ result: 500, error: err.message })
         })
 }
+
 const deleteProduct = (req, res) => {
-    //deletes the Product matching the ID from the param
-    Models.Product.findByIdAndRemove(req.params.id, req.body, {
-        useFindAndModify: false
-    })
+    //deletes the user matching the ID from the param
+    console.log()
+    Models.Product.findOneAndDelete({ id: req.params.id }, req.body )
         .then(data => res.send({ result: 200, data: data }))
         .catch(err => {
             console.log(err);

@@ -59,10 +59,10 @@ module.exports = router;
 } 
 */
 //PUT
-//http://127.0.0.1:8000/api/users/update/53
+//http://127.0.0.1:8000/api/users/update/11
 /* 
 {
-    "id":"53",
+    "id":"11",
     "email":"CHANGED@gmail.com",
     "username":"macmwz",
     "password":"1234567",
@@ -85,6 +85,8 @@ module.exports = router;
 
    */
 
-//delete 
+//DELETE
 
-// http://127.0.0.1:8000/api/users/delete/100
+// http://127.0.0.1:8000/api/users/delete/11
+
+//WORKING AFTER TESTING

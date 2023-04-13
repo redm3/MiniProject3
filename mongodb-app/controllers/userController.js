@@ -2,30 +2,55 @@ const axios = require('axios');
 let Models = require("../models"); //matches index.js
 const mongoose = require('mongoose')
 
-const getUsers = (res) => {
-    axios.get('https://fakestoreapi.com/users')
-        .then(response => {
-            // save the retrieved user data to your database
-            Models.User.insertMany(response.data)
-                .then(() => {
-                    // retrieve the saved user data from your database
+/* const getUsers = (res) => {
+        axios.get('https://fakestoreapi.com/users')
+            .then(response => {
+                // save the retrieved user data to your database
+                Models.User.insertMany(response.data)
+                    .then(() => {
+                        // retrieve the saved user data from your database
+                        Models.User.find({})
+                            .then(data => res.send({ result: 200, data: data }))
+                            .catch(err => {
+                                console.log(err);
+                                res.send({ result: 500, error: err.message })
+                            });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.send({ result: 500, error: err.message })
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.send({ result: 500, error: err.message })
+            });
+    }; */
+
+    const getUsers = () => {
+        Models.User.deleteMany({})
+          .then(() => {
+            axios.get('https://fakestoreapi.com/users')
+              .then(response => {
+                // Save the retrieved user data to your database
+                Models.User.insertMany(response.data)
+                  .then(() => {
+                    // Retrieve the saved user data from your database
                     Models.User.find({})
-                        .then(data => res.send({ result: 200, data: data }))
-                        .catch(err => {
-                            console.log(err);
-                            res.send({ result: 500, error: err.message })
-                        });
-                })
-                .catch(err => {
+                      .then(data => console.log({ result: 200, data: data }))
+                      .catch(err => {
+                        console.log(err);
+                      });
+                  })
+                  .catch(err => {
                     console.log(err);
-                    res.send({ result: 500, error: err.message })
-                });
-        })
-        .catch(err => {
-            console.log(err);
-            res.send({ result: 500, error: err.message })
-        });
-};
+                  });
+              })
+              .catch(err => {
+                console.log(err);
+              })
+          })
+      };
 
 const getUserById = (req, res) => {
     /* axios.get('https://fakestoreapi.com/users/'+req.params.id) */

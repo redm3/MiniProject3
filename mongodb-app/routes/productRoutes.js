@@ -18,7 +18,8 @@ router.post('/create', (req, res) => {
 router.put('/update/:id', (req, res) => {
     Controllers.productController.updateProduct(req, res);
 })
-router.delete('/:id', (req, res) => {
+
+router.delete('/delete/:id', (req, res) => {
     Controllers.productController.deleteProduct(req, res)
 })
   
@@ -44,3 +45,14 @@ router.delete('/:id', (req, res) => {
     "__v": 0
 }
  */
+
+//PUT
+//http://127.0.0.1:8000/api/product/update/100
+
+
+
+
+//delete
+//http://127.0.0.1:8000/api/product/delete/100
+
+//WORKING AFTER TESTING
